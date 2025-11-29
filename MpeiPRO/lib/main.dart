@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,46 +13,119 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-        useMaterial3: true,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 31, 31, 31),
+        appBarTheme: const AppBarThemeData(
+          backgroundColor: const Color.fromARGB(255, 31, 31, 31),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        textTheme: TextTheme(
+          bodyMedium: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+          ),
+          labelSmall: TextStyle(
+            color: Colors.white.withOpacity(0.6),
+            fontWeight: FontWeight.w700,
+            fontSize: 14,
+          ),
+        ),
       ),
-      home: const MyHomePage(title: 'Idi Nahui'),
+      routes: {
+        '/' : (context) => CryptoListScreen(),
+        '/coin' : (context) => CryptoCoinScreen(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+class CryptoListScreen extends StatefulWidget {
+  const CryptoListScreen({super.key,});
+  
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<CryptoListScreen> createState() => _CryptoListScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _CryptoListScreenState extends State<CryptoListScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('CryptocurrenciesList'), 
+        centerTitle: true
+      ),
+      body: ListView.separated(
+        itemCount: 10,
+        separatorBuilder: (context, index) => Divider(
+          color: Colors.white.withOpacity(0.06),
+          height: 1,
+          thickness: 2,
+        ),
+        itemBuilder: (context, i) {
+          const String coinName = 'Bitcoin';
+          return ListTile(
+          leading: Image.asset(
+            'assets/Image/bitcoin.png',
+            height: 45,
+            width: 45,
+          ),
+          trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white),
+          onTap: () {
+            Navigator.of(context,).pushNamed('/coin', arguments: coinName);
+          },
+          title: Text(coinName, style: theme.textTheme.bodyMedium),
+          subtitle: Text('200000\$', style: theme.textTheme.labelSmall),
+          );
+        },
+      ),
+    );
+  }
+}
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+class CryptoCoinScreen extends StatefulWidget {
+  const CryptoCoinScreen({super.key});
+
+  @override
+  State<CryptoCoinScreen> createState() => _CryptoCoinScreenState();
+}
+
+class _CryptoCoinScreenState extends State<CryptoCoinScreen> {
+  String? coinName;
+
+  @override
+  void didChangeDependencies() {
+    final args = ModalRoute.of(context)?.settings.arguments;
+    assert(args != null && args is String, 'You must provide string args');
+
+
+    coinName = args as String;
+    setState(() {});
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.red, title: Text(widget.title)),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, i) => ListTile(
-          title: Text('Bitcoin', style: TextStyle(color: Colors.black)),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
+      
+        title: Text(coinName ?? '...'), 
+        centerTitle: true
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+
+
+
     );
   }
 }
