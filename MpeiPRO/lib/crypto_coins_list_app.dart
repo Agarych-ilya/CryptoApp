@@ -3,9 +3,7 @@ import 'package:flutter_application_1/Theme/theme.dart';
 import 'package:flutter_application_1/router/router.dart';
 
 
-void main() {
-  runApp(const CryptoCurrenciesListApp());
-}
+
 
 class CryptoCurrenciesListApp extends StatelessWidget {
   const CryptoCurrenciesListApp({super.key});
@@ -19,6 +17,3 @@ class CryptoCurrenciesListApp extends StatelessWidget {
     );
   }
 }
-
-
-
