@@ -1,6 +1,9 @@
 # CryptoApp
-Создание криптоприложения для обучения Flutter и Dart
+**Создание криптоприложения для обучения Flutter и Dart**
 
 
-![Основное фото](https://github.com/Agarych-ilya/CryptoApp/blob/main/Photos/main_photo.png)
+<p align="center">
+  <img src="Photos/main_photo.png" width="600" alt="Основное фото">
+</p>
+
 
