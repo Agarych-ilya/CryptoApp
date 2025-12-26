@@ -1,11 +1,4 @@
-# CryptoApp
-**Создание криптоприложения для обучения Flutter и Dart**
-
-
-<p align="center">
-  <img src="Photos/main_photo.png" width="250" alt="Основное фото">
-</p>
-
+# CryptoApp(Создание криптоприложения для обучения Flutter и Dart)
 ## Идея
 С помощью фреймворка [Flutter](https://flutter.dev/) и языка программирования [Dart](https://dart.dev/) было реализовано приложение(**App**), которое показывает в реальном времени цену криптовалют в долларах(**USD**). Для примера было прдеставлено 6 криптовалют, а имено:
 
@@ -15,6 +8,11 @@
 * Солана(**SOL**)
 * Tether(**USDT**)
 * Dogecoin(**DOGE**)
+
+## Фото
+<p align="center">
+  <img src="Photos/main_photo.png" width="250" alt="Основное фото">
+</p>
 
 
 
