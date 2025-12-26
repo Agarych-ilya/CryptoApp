@@ -3,7 +3,8 @@
 
 
 <p align="center">
-  <img src="Photos/main_photo.png" width="600" alt="Основное фото">
+  <img src="Photos/main_photo.png" width="200" alt="Основное фото">
 </p>
+
 
 
